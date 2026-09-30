@@ -45,9 +45,9 @@ jobs:
           restore-keys: ${{ runner.os }}-npm-
 
       # AI-decided: setup for nodejs/npm
-      - name: Setup Environment
-        run: |
-          nvm install 20
+      # - name: Setup Environment
+      #   run: |
+      #     nvm install 20
 
       # AI-decided: build
       - name: Build
