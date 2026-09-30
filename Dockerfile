@@ -13,7 +13,7 @@ COPY . .
 
 FROM node:20-slim
 WORKDIR /app
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup || (groupadd -r appgroup && useradd -r -g appgroup appuser)
 COPY --from=builder /app ./
 USER appuser
 EXPOSE 3000
