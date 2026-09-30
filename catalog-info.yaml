@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nodejstest1
+  annotations:
+    github.com/project-slug: jk7testorg/nodejstest1
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/kubernetes-id: nodejstest1
+    sonarqube.org/project-key: nodejstest1
+
+    argocd/app-name: nodejstest1-dev
+    prometheus.io/rule: "kube_pod_container_resource_requests{pod%3D~'nodejstest1.*'}|resource,kube_pod_container_status_restarts_total{pod%3D~'nodejstest1.*'}|container"
+    prometheus.io/alert: "KubePodCrashLooping,KubeDeploymentReplicasMismatch,KubePodNotReady,KubeContainerWaiting,KubeContainerOOMKilled,KubeDeploymentRolloutStuck"
+    prometheus.io/labels: "namespace=dev"
+    grafana/overview-dashboard: 'http://34.29.242.32/grafana/d/ffuuiuytw0f0gb/backstage-view?var-pod_prefix=nodejstest1&var-namespace=dev&kiosk'
+    datadoghq.com/site: datadoghq.com
+    datadoghq.com/dashboard-url: 'https://p.datadoghq.com/sb/58778f54-b329-11f1-9faf-ae11b9db7c22-2cee4afefd7d91327f82ccbc328205ba?tpl_var_service=nodejstest1'
+  tags:
+    - nodejs
+    - scaffolded
+spec:
+  type: service
+  lifecycle: dev
+  owner: user:default/madryx
+  system: dssp-platform
